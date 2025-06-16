@@ -1,7 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"/home/mj/raytracer-c/build/Release/cmake_install.cmake"
-	],
-	"Parallel" : false
-}

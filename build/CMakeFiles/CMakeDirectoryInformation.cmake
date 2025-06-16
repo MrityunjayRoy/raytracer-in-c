@@ -3,7 +3,7 @@
 
 # Relative path conversion top directories.
 set(CMAKE_RELATIVE_PATH_TOP_SOURCE "/home/mj/raytracer-c")
-set(CMAKE_RELATIVE_PATH_TOP_BINARY "/home/mj/raytracer-c/build/Release")
+set(CMAKE_RELATIVE_PATH_TOP_BINARY "/home/mj/raytracer-c/build")
 
 # Force unix paths in dependencies.
 set(CMAKE_FORCE_UNIX_PATHS 1)
