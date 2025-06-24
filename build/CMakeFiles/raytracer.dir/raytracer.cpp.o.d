@@ -1,7 +1,7 @@
 CMakeFiles/raytracer.dir/raytracer.cpp.o: \
  /home/mj/raytracer-c/raytracer.cpp /usr/include/stdc-predef.h \
- /home/mj/raytracer-c/hittable.h /home/mj/raytracer-c/utils.h \
- /usr/include/c++/15.1.1/cmath \
+ /home/mj/raytracer-c/camera.h /home/mj/raytracer-c/hittable.h \
+ /home/mj/raytracer-c/utils.h /usr/include/c++/15.1.1/cmath \
  /usr/include/c++/15.1.1/bits/requires_hosted.h \
  /usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/c++config.h \
  /usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/os_defines.h \
