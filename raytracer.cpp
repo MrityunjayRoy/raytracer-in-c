@@ -1,26 +1,15 @@
 // reference : https://raytracing.github.io/books/RayTracingInOneWeekend.html
 
-#include "color.h"
-#include "ray.h"
+#include "hittable.h"
+#include "hittable_list.h"
+#include "sphere.h"
+#include "utils.h"
 #include "vec3.h"
 
-#include <iostream>
-
-bool hit_sphere(const point3& center, double radius, const Ray& r){
-  vec3 oc = center - r.origin();
-  auto a = dot(r.direction(), r.direction());
-  auto b = 2 * dot(r.direction(), oc);
-  auto c = dot(oc, oc) - radius * radius;
-
-  auto discriminent = b*b - 4*a*c;
-  return discriminent >0;
-
-}
-
-color ray_color(const Ray &r) {
-
-  if(hit_sphere(point3(0, 0, -1), 0.5, r)){
-    return (color(0,1,1));
+color ray_color(const Ray &r, const Hittable &world) {
+  hit_record rec;
+  if (world.hit(r, interval(0, infinity), rec)) {
+    return 0.5 * (rec.normal + color(1,1,1));
   }
 
   vec3 unit_direction = unit_vector(r.direction());
@@ -30,13 +19,22 @@ color ray_color(const Ray &r) {
 
 int main() {
 
-  // Camera
+  // Image
   auto aspect_ratio = 16.0 / 9.0;
   double image_width = 400.0;
 
   int image_height = int(image_width / aspect_ratio);
   image_height = (image_height < 1) ? 1 : image_height;
 
+  // World
+  auto center_small = point3(0, 0, -5);
+  auto center_big = point3(0, -100.5, -1);
+
+  hittable_list world;
+  world.add(make_shared<Sphere>(center_small, 4.5));
+  world.add(make_shared<Sphere>(center_big, 100));
+
+  // Camera
   auto focal_length = 1.0;
   auto viewport_height = 2.0;
   auto viewport_width = viewport_height * (double(image_width) / image_height);
@@ -64,7 +62,7 @@ int main() {
       auto ray_direction = pixel_center - camera_center;
       Ray r(camera_center, ray_direction);
 
-      color pixel_color = ray_color(r);
+      color pixel_color = ray_color(r, world);
       write_color(std::cout, pixel_color);
     }
   }
