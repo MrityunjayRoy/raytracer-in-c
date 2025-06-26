@@ -1,7 +1,6 @@
 // reference : https://raytracing.github.io/books/RayTracingInOneWeekend.html
 
 #include "camera.h"
-#include "hittable.h"
 #include "hittable_list.h"
 #include "sphere.h"
 #include "utils.h"
